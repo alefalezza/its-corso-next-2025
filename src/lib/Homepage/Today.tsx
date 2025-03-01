@@ -7,6 +7,7 @@ import classes from './Today.module.css';
 
 import '@mantine/carousel/styles.css';
 
+import Link from 'next/link';
 import { Movie } from '@/api-types/movie';
 
 function Card({ movie }: { movie: Movie }) {
@@ -48,7 +49,7 @@ function Card({ movie }: { movie: Movie }) {
             Acquista il biglietto
           </Button>
           <Button className={classes.btnScheda} color="dark">
-            Vai alla scheda
+            <Link href={'/movies/' + movie.id}>Vai alla scheda</Link>
           </Button>
         </Stack>
         <Image src={movie.image_url} h="100%" alt={movie.title} />
