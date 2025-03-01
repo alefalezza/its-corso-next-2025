@@ -57,7 +57,7 @@ function Card({ movie }: { movie: Movie }) {
   );
 }
 
-const data: Array<Movie> = [
+export const data: Array<Movie> = [
   {
     id: 1,
     title: 'The Shawshank Redemption',
@@ -96,10 +96,10 @@ const data: Array<Movie> = [
   },
 ];
 
-export const Today = () => {
+export const Today = ({ movies }: { movies: Array<Movie> }) => {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = data.map((item) => (
+  const slides = movies.map((item) => (
     <CarouselSlide key={item.id}>
       <Card movie={item} />
     </CarouselSlide>

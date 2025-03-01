@@ -4,10 +4,11 @@ import { Carousel } from '@mantine/carousel';
 
 import '@mantine/carousel/styles.css';
 
-import { Tabs } from '@mantine/core';
+import { Image, Tabs } from '@mantine/core';
+import { Movie } from '../../api-types/movie';
 import classes from './NextTabs.module.css';
 
-export const NextTabs = () => {
+export const NextTabs = ({ allMovies }: { allMovies: Movie[] }) => {
   return (
     <Tabs defaultValue="byMovie" variant="none">
       <Tabs.List justify="center">
@@ -30,15 +31,13 @@ export const NextTabs = () => {
           align="start"
           slidesToScroll={3}
         >
-          <Carousel.Slide>1</Carousel.Slide>
-          <Carousel.Slide>2</Carousel.Slide>
-          <Carousel.Slide>3</Carousel.Slide>
-          <Carousel.Slide>1</Carousel.Slide>
-          <Carousel.Slide>2</Carousel.Slide>
-          <Carousel.Slide>3</Carousel.Slide>
-          <Carousel.Slide>1</Carousel.Slide>
-          <Carousel.Slide>2</Carousel.Slide>
-          <Carousel.Slide>3</Carousel.Slide>
+          {allMovies.map((movie, index) => {
+            return (
+              <Carousel.Slide key={index}>
+                <Image src={movie.image_url} h="100%" alt={movie.title} fit="contain" />
+              </Carousel.Slide>
+            );
+          })}
         </Carousel>
       </Tabs.Panel>
       <Tabs.Panel value="byDay">
